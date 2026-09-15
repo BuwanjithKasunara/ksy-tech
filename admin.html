@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KSY Tech | Management Portal</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    .admin-container { max-width: 1000px; margin: 40px auto; padding: 20px; }
+    .admin-card { background: rgba(22, 22, 26, 0.9); border: 1px solid rgba(221, 89, 30, 0.2); border-radius: 12px; padding: 24px; margin-bottom: 24px; }
+    .admin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .item-row { display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .item-row:last-child { border-bottom: none; }
+    .danger-btn { background: #ef4444; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; }
+    .danger-btn:hover { background: #dc2626; }
+    #admin-view { display: none; }
+  </style>
+</head>
+<body>
+  <div class="cursor-glow" id="cursor-glow"></div>
+
+  <div class="admin-container">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+      <h1>KSY Tech <span class="accent-glow">Admin</span></h1>
+      <a href="/" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Public Site</a>
+    </div>
+
+    <!-- Login Box -->
+    <div class="admin-card" id="login-box">
+      <h3>Enter Admin Key</h3>
+      <div style="display: flex; gap: 12px; margin-top: 16px;">
+        <input type="password" id="admin-pass-input" placeholder="Secret Key" style="flex: 1; padding: 12px; border-radius: 8px; border: 1px solid #333; background: #111; color: #fff;" />
+        <button class="btn btn-primary" id="login-btn">Authenticate</button>
+      </div>
+      <p id="auth-err" style="color: #ef4444; margin-top: 8px;"></p>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="admin-view">
+      <!-- Add Project -->
+      <div class="admin-card">
+        <h3><i class="fas fa-folder-plus"></i> Add New Project</h3>
+        <form id="project-form" style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px;">
+          <div class="admin-grid">
+            <input type="text" id="p-title" placeholder="Project Title" required style="padding: 10px; background: #111; border: 1px solid #333; color: #fff; border-radius: 6px;" />
+            <select id="p-category" style="padding: 10px; background: #111; border: 1px solid #333; color: #fff; border-radius: 6px;">
+              <option value="web">Web Application</option>
+              <option value="mobile">Mobile Application</option>
+            </select>
+          </div>
+          <textarea id="p-desc" placeholder="Project Description" rows="2" required style="padding: 10px; background: #111; border: 1px solid #333; color: #fff; border-radius: 6px;"></textarea>
+          <input type="text" id="p-tags" placeholder="Tags (comma-separated, e.g. React, Node.js, SQLite)" style="padding: 10px; background: #111; border: 1px solid #333; color: #fff; border-radius: 6px;" />
+          <div class="admin-grid">
+            <input type="url" id="p-img" placeholder="Image URL (Unsplash, R2, etc.)" required style="padding: 10px; background: #111; border: 1px solid #333; color: #fff; border-radius: 6px;" />
+            <input type="url" id="p-github" placeholder="GitHub Repository URL" required style="padding: 10px; background: #111; border: 1px solid #333; color: #fff; border-radius: 6px;" />
+          </div>
+          <input type="url" id="p-demo" placeholder="Live Demo URL (Optional)" style="padding: 10px; background: #111; border: 1px solid #333; color: #fff; border-radius: 6px;" />
+          <button type="submit" class="btn btn-primary" style="align-self: flex-start;"><i class="fas fa-plus"></i> Add Project</button>
+        </form>
+      </div>
+
+      <!-- Current Projects List -->
+      <div class="admin-card">
+        <h3><i class="fas fa-list-check"></i> Manage Existing Projects</h3>
+        <div id="projects-list" style="margin-top: 16px;"></div>
+      </div>
+
+      <!-- Current Team Members List -->
+      <div class="admin-card">
+        <h3><i class="fas fa-users-gear"></i> Current Team Members</h3>
+        <div id="team-list" style="margin-top: 16px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

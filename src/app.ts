@@ -573,7 +573,7 @@ function openMemberModal(memberId: string): void {
           <i class="fas fa-file-pdf"></i> View Official CV
         </a>
       ` : ''}
-      <a href="mailto:${member.email || 'contact@ksytech.dev'}" class="btn btn-secondary">
+      <a href="mailto:${member.email || 'ksytechlk@gmail.com'}" class="btn btn-secondary">
         <i class="fas fa-paper-plane"></i> Contact Directly
       </a>
     </div>

@@ -50,9 +50,9 @@ const teamMembers = [
         image: "assets/kasunaraksy.png",
         avatarZoom: "transform: scale(1.55); object-position: 50% 25%;",
         isFounder: true,
-        github: "https://github.com",
-        linkedin: "https://linkedin.com",
-        email: "contact@ksytech.dev",
+        github: "https://github.com/BuwanjithKasunara",
+        linkedin: "https://www.linkedin.com/in/buwanjith-kasunara-076045296/",
+        email: "ksytechlk@gmail.com",
         education: "BSc (Hons) in Information Technology - General Sir John Kotelawala Defence University",
         keySkills: ["System Architecture", "TypeScript", "Node.js", "Java", "Cloud Infrastructure", "API Design"],
         experienceHighlights: [

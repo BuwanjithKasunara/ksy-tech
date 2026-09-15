@@ -1,3 +1,5 @@
+export {};
+
 interface Project {
   id: number;
   title: string;
@@ -20,7 +22,6 @@ interface TeamMember {
   isFounder?: boolean;
   github: string;
   linkedin: string;
-  // CV Credentials & Dossier Info
   email?: string;
   phone?: string;
   education?: string;
@@ -29,8 +30,8 @@ interface TeamMember {
   cvPdfUrl?: string;
 }
 
-// Sample Undergraduate Projects
-const projects: Project[] = [
+// Default fallback data: Guarantees site is never blank
+const fallbackProjects: Project[] = [
   {
     id: 1,
     title: "Campus Hub Portal",
@@ -70,9 +71,7 @@ const projects: Project[] = [
   }
 ];
 
-// 15 Startup Profiles with CV Credentials & Custom Framing
-const teamMembers: TeamMember[] = [
-  // 2 Co-Founders
+const fallbackTeamMembers: TeamMember[] = [
   {
     id: "kasunara",
     name: "BKB Kasunara",
@@ -108,8 +107,6 @@ const teamMembers: TeamMember[] = [
       "Leads cross-platform mobile sprint planning and release roadmaps"
     ]
   },
-
-  // Core Team Members
   {
     id: "linali",
     name: "Linali Wickrama",
@@ -266,7 +263,10 @@ const teamMembers: TeamMember[] = [
   }
 ];
 
-// 3D Sculpted Volumetric Tunnel Arches Canvas
+let projects: Project[] = [...fallbackProjects];
+let teamMembers: TeamMember[] = [...fallbackTeamMembers];
+
+// 3D Ribbon Arches Canvas
 interface Particle {
   x: number;
   y: number;
@@ -311,7 +311,7 @@ class RibbonCanvas {
         size: Math.random() * 2 + 0.8,
         speedY: -(Math.random() * 0.4 + 0.2),
         speedX: (Math.random() - 0.5) * 0.3,
-        alpha: Math.random() * 0.7 + 0.2
+        alpha: Math.random() * 0.7 + 0.2,
       });
     }
   }
@@ -377,7 +377,7 @@ class RibbonCanvas {
   }
 
   private renderParticles(width: number, height: number): void {
-    this.particles.forEach(p => {
+    this.particles.forEach((p) => {
       p.y += p.speedY;
       p.x += p.speedX;
 
@@ -406,8 +406,12 @@ class RibbonCanvas {
       const height = rect.height;
 
       const centerGlow = this.ctx.createRadialGradient(
-        width * 0.45, height * 0.65, 30,
-        width * 0.45, height * 0.65, width * 0.55
+        width * 0.45,
+        height * 0.65,
+        30,
+        width * 0.45,
+        height * 0.65,
+        width * 0.55
       );
       centerGlow.addColorStop(0, 'rgba(221, 89, 30, 0.4)');
       centerGlow.addColorStop(0.45, 'rgba(130, 40, 10, 0.18)');
@@ -435,16 +439,21 @@ function renderProjects(categoryFilter: string = 'all'): void {
 
   const filtered = categoryFilter === 'all'
     ? projects
-    : projects.filter(p => p.category === categoryFilter);
+    : projects.filter((p) => p.category === categoryFilter);
 
-  container.innerHTML = filtered.map(p => `
+  if (filtered.length === 0) {
+    container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #888;">No projects available.</p>';
+    return;
+  }
+
+  container.innerHTML = filtered.map((p) => `
     <div class="project-card">
       <img src="${p.imageUrl}" alt="${p.title}" class="project-img" loading="lazy" />
       <div class="project-body">
         <h3>${p.title}</h3>
         <p>${p.description}</p>
         <div class="tech-tags">
-          ${p.tags.map(tag => `<span>${tag}</span>`).join('')}
+          ${p.tags.map((tag) => `<span>${tag}</span>`).join('')}
         </div>
         <div class="project-links">
           <a href="${p.githubUrl}" target="_blank" rel="noopener noreferrer">
@@ -461,7 +470,7 @@ function renderProjects(categoryFilter: string = 'all'): void {
 function openMemberModal(memberId: string): void {
   const modal = document.getElementById('member-modal');
   const modalContent = document.getElementById('modal-content');
-  const member = teamMembers.find(m => m.id === memberId);
+  const member = teamMembers.find((m) => m.id === memberId);
 
   if (!modal || !modalContent || !member) return;
 
@@ -502,7 +511,7 @@ function openMemberModal(memberId: string): void {
       <div class="dossier-section">
         <h4><i class="fas fa-laptop-code"></i> Core Competencies & Skills</h4>
         <div class="skill-pill-list">
-          ${member.keySkills.map(s => `<span class="skill-pill">${s}</span>`).join('')}
+          ${member.keySkills.map((s) => `<span class="skill-pill">${s}</span>`).join('')}
         </div>
       </div>
     ` : ''}
@@ -511,7 +520,7 @@ function openMemberModal(memberId: string): void {
       <div class="dossier-section">
         <h4><i class="fas fa-award"></i> Highlights & Leadership</h4>
         <ul style="padding-left: 1.2rem; color: #ccc; line-height: 1.6;">
-          ${member.experienceHighlights.map(h => `<li>${h}</li>`).join('')}
+          ${member.experienceHighlights.map((h) => `<li>${h}</li>`).join('')}
         </ul>
       </div>
     ` : ''}
@@ -547,8 +556,8 @@ function renderTeam(): void {
   const foundersContainer = document.getElementById('founders-container');
   const membersContainer = document.getElementById('members-container');
 
-  const founders = teamMembers.filter(m => m.isFounder);
-  const regularMembers = teamMembers.filter(m => !m.isFounder);
+  const founders = teamMembers.filter((m) => m.isFounder);
+  const regularMembers = teamMembers.filter((m) => !m.isFounder);
 
   const renderAvatar = (m: TeamMember, extraClass: string = '') => {
     if (m.image) {
@@ -566,7 +575,7 @@ function renderTeam(): void {
   };
 
   if (foundersContainer) {
-    foundersContainer.innerHTML = founders.map(member => `
+    foundersContainer.innerHTML = founders.map((member) => `
       <div class="card team-card founder-card" data-member-id="${member.id}">
         <span class="founder-badge"><i class="fas fa-certificate"></i> Co-Founder</span>
         ${renderAvatar(member, 'founder-avatar')}
@@ -582,7 +591,7 @@ function renderTeam(): void {
   }
 
   if (membersContainer) {
-    membersContainer.innerHTML = regularMembers.map(member => `
+    membersContainer.innerHTML = regularMembers.map((member) => `
       <div class="card team-card" data-member-id="${member.id}">
         ${renderAvatar(member)}
         <h3>${member.name}</h3>
@@ -596,8 +605,8 @@ function renderTeam(): void {
     `).join('');
   }
 
-  // Bind click handlers to cards
-  document.querySelectorAll<HTMLElement>('.team-card').forEach(card => {
+  // Attach card click handlers
+  document.querySelectorAll<HTMLElement>('.team-card').forEach((card) => {
     card.addEventListener('click', () => {
       const id = card.getAttribute('data-member-id');
       if (id) openMemberModal(id);
@@ -606,11 +615,38 @@ function renderTeam(): void {
 }
 
 // Lifecycle Initialization
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  new RibbonCanvas('ribbon-canvas');
+
+  // Initial render with fallback data immediately
   renderProjects();
   renderTeam();
 
-  new RibbonCanvas('ribbon-canvas');
+  // Try updating with live D1 database records
+  try {
+    const [projRes, teamRes] = await Promise.all([
+      fetch('/api/projects'),
+      fetch('/api/team'),
+    ]);
+
+    if (projRes.ok) {
+      const liveProjects = await projRes.json();
+      if (Array.isArray(liveProjects) && liveProjects.length > 0) {
+        projects = liveProjects;
+        renderProjects();
+      }
+    }
+
+    if (teamRes.ok) {
+      const liveTeam = await teamRes.json();
+      if (Array.isArray(liveTeam) && liveTeam.length > 0) {
+        teamMembers = liveTeam;
+        renderTeam();
+      }
+    }
+  } catch (err) {
+    console.warn('API fetch failed, retaining fallback data:', err);
+  }
 
   // Modal Dismiss Listeners
   const modalCloseBtn = document.getElementById('modal-close');
@@ -634,11 +670,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Filter Buttons
+  // Project Filters
   const filterBtns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
-  filterBtns.forEach(btn => {
+  filterBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
+      filterBtns.forEach((b) => b.classList.remove('active'));
       btn.classList.add('active');
       const filter = btn.getAttribute('data-filter') || 'all';
       renderProjects(filter);
@@ -700,13 +736,13 @@ document.addEventListener('DOMContentLoaded', () => {
       try {
         const response = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
-          body: formData
+          body: formData,
         });
 
         const result = await response.json();
 
         if (response.ok && result.success) {
-          formFeedback.textContent = 'Transmission dispatched successfully! KSY Tech will respond shortly.';
+          formFeedback.textContent = 'Message received. The KSY Tech engineering team will review your inquiry and follow up shortly.';
           formFeedback.style.color = '#4ade80';
           contactForm.reset();
         } else {

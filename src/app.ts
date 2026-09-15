@@ -100,7 +100,7 @@ const teamMembers: TeamMember[] = [
     avatarZoom: "transform: scale(1.15); object-position: 50% 15%;",
     isFounder: true,
     github: "https://github.com",
-    linkedin: "https://linkedin.com",
+    linkedin: "https://www.linkedin.com/in/kavishka-dilshan-07044b243/",
     education: "BSc (Hons) in Information Technology - General Sir John Kotelawala Defence University",
     keySkills: ["Product Strategy", "Mobile Architecture", "Agile Roadmap Execution", "Cross-Platform Delivery"],
     experienceHighlights: [
@@ -138,7 +138,7 @@ const teamMembers: TeamMember[] = [
     image: "assets/senehasksy.png",
     avatarZoom: "transform: scale(1.2); object-position: 50% 18%;",
     github: "https://github.com",
-    linkedin: "https://linkedin.com",
+    linkedin: "https://www.linkedin.com/in/senehas-kodithuwakku-20b2682b7",
     email: "dinushasenehas2002@gmail.com",
     phone: "+94 778414210",
     education: "BSc (Hons) in Information Technology - KDU (2024-Present) | Rahula College Matara",
@@ -233,7 +233,7 @@ const teamMembers: TeamMember[] = [
   image: "assets/adithyaksy.png", // Add his portrait here or use avatarIcon: "fa-solid fa-cloud"
   avatarZoom: "transform: scale(1.2); object-position: 50% 15%;",
   github: "https://github.com",
-  linkedin: "https://linkedin.com",
+  linkedin: "https://www.linkedin.com/in/adithya-jayasundara-397871394",
   email: "adithyakesara12345@gmail.com",
   phone: "0702203306",
   education: "BSc (Hons) in Information Technology - KDU (Expected 2027)",

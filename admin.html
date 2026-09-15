@@ -9,12 +9,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
   <style>
     .admin-container { max-width: 1000px; margin: 40px auto; padding: 20px; }
-    .admin-card { background: rgba(22, 22, 26, 0.9); border: 1px solid rgba(221, 89, 30, 0.2); border-radius: 12px; padding: 24px; margin-bottom: 24px; }
-    .admin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .item-row { display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .admin-card { background: rgba(22, 22, 26, 0.95); border: 1px solid rgba(221, 89, 30, 0.25); border-radius: 12px; padding: 24px; margin-bottom: 28px; }
+    .admin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .admin-input, .admin-card input, .admin-card textarea, .admin-card select {
+      width: 100%; box-sizing: border-box; padding: 12px; background: #121215; border: 1px solid #333; color: #fff; border-radius: 8px; font-family: inherit; font-size: 0.95rem;
+    }
+    .admin-input:focus, .admin-card input:focus, .admin-card textarea:focus { border-color: #DD591E; outline: none; }
+    .item-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 10px; border-bottom: 1px solid rgba(255,255,255,0.06); gap: 16px; }
     .item-row:last-child { border-bottom: none; }
-    .danger-btn { background: #ef4444; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; }
-    .danger-btn:hover { background: #dc2626; }
+    .action-group { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
+    .btn-action { border: none; padding: 7px 14px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; }
+    .btn-toggle-show { background: #059669; color: #fff; }
+    .btn-toggle-hide { background: #475569; color: #cbd5e1; }
+    .danger-btn { background: #dc2626; color: white; }
+    .danger-btn:hover { background: #b91c1c; }
+    .item-muted { opacity: 0.45; text-decoration: line-through; }
     #admin-view { display: none; }
   </style>
 </head>
@@ -22,8 +31,8 @@
   <div class="cursor-glow" id="cursor-glow"></div>
 
   <div class="admin-container">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
-      <h1>KSY Tech <span class="accent-glow">Admin</span></h1>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 28px;">
+      <h1>KSY Tech <span class="accent-glow">Admin Portal</span></h1>
       <a href="/" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Public Site</a>
     </div>
 
@@ -31,47 +40,85 @@
     <div class="admin-card" id="login-box">
       <h3>Enter Admin Key</h3>
       <div style="display: flex; gap: 12px; margin-top: 16px;">
-        <input type="password" id="admin-pass-input" placeholder="Secret Key" style="flex: 1; padding: 12px; border-radius: 8px; border: 1px solid #333; background: #111; color: #fff;" />
-        <button class="btn btn-primary" id="login-btn">Authenticate</button>
+        <input type="password" id="admin-pass-input" placeholder="Secret Key" />
+        <button class="btn btn-primary" id="login-btn" style="flex-shrink: 0;">Authenticate</button>
       </div>
-      <p id="auth-err" style="color: #ef4444; margin-top: 8px;"></p>
+      <p id="auth-err" style="color: #ef4444; margin-top: 8px; font-size: 0.9rem;"></p>
     </div>
 
     <!-- Dashboard -->
     <div id="admin-view">
-      <!-- Add Project -->
+
+      <!-- ADD PROJECT -->
       <div class="admin-card">
-        <h3><i class="fas fa-folder-plus"></i> Add New Project</h3>
-        <form id="project-form" style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px;">
+        <h3><i class="fas fa-folder-plus" style="color: #DD591E;"></i> Add New Project</h3>
+        <form id="project-form" style="display: flex; flex-direction: column; gap: 14px; margin-top: 16px;">
           <div class="admin-grid">
-            <input type="text" id="p-title" placeholder="Project Title" required style="padding: 10px; background: #111; border: 1px solid #333; color: #fff; border-radius: 6px;" />
-            <select id="p-category" style="padding: 10px; background: #111; border: 1px solid #333; color: #fff; border-radius: 6px;">
+            <input type="text" id="p-title" placeholder="Project Title" required />
+            <select id="p-category">
               <option value="web">Web Application</option>
               <option value="mobile">Mobile Application</option>
             </select>
           </div>
-          <textarea id="p-desc" placeholder="Project Description" rows="2" required style="padding: 10px; background: #111; border: 1px solid #333; color: #fff; border-radius: 6px;"></textarea>
-          <input type="text" id="p-tags" placeholder="Tags (comma-separated, e.g. React, Node.js, SQLite)" style="padding: 10px; background: #111; border: 1px solid #333; color: #fff; border-radius: 6px;" />
+          <textarea id="p-desc" placeholder="Brief project summary / description" rows="2" required></textarea>
+          <input type="text" id="p-tags" placeholder="Tech tags (comma-separated, e.g. React, Node.js, SQLite)" />
           <div class="admin-grid">
-            <input type="url" id="p-img" placeholder="Image URL (Unsplash, R2, etc.)" required style="padding: 10px; background: #111; border: 1px solid #333; color: #fff; border-radius: 6px;" />
-            <input type="url" id="p-github" placeholder="GitHub Repository URL" required style="padding: 10px; background: #111; border: 1px solid #333; color: #fff; border-radius: 6px;" />
+            <input type="url" id="p-img" placeholder="Image URL (Unsplash, R2 link, etc.)" required />
+            <input type="url" id="p-github" placeholder="GitHub Repository URL" required />
           </div>
-          <input type="url" id="p-demo" placeholder="Live Demo URL (Optional)" style="padding: 10px; background: #111; border: 1px solid #333; color: #fff; border-radius: 6px;" />
+          <input type="url" id="p-demo" placeholder="Live Demo URL (Optional)" />
           <button type="submit" class="btn btn-primary" style="align-self: flex-start;"><i class="fas fa-plus"></i> Add Project</button>
         </form>
       </div>
 
-      <!-- Current Projects List -->
+      <!-- MANAGE PROJECTS -->
       <div class="admin-card">
-        <h3><i class="fas fa-list-check"></i> Manage Existing Projects</h3>
+        <h3><i class="fas fa-list-check" style="color: #DD591E;"></i> Manage Projects</h3>
         <div id="projects-list" style="margin-top: 16px;"></div>
       </div>
 
-      <!-- Current Team Members List -->
+      <!-- ADD TEAM MEMBER -->
       <div class="admin-card">
-        <h3><i class="fas fa-users-gear"></i> Current Team Members</h3>
+        <h3><i class="fas fa-user-plus" style="color: #DD591E;"></i> Add New Team Member</h3>
+        <form id="team-form" style="display: flex; flex-direction: column; gap: 14px; margin-top: 16px;">
+          <div class="admin-grid">
+            <input type="text" id="m-id" placeholder="Unique ID (e.g. johndoe, lowercase, no spaces)" required />
+            <input type="text" id="m-name" placeholder="Full Name (e.g. John Doe)" required />
+          </div>
+          <div class="admin-grid">
+            <input type="text" id="m-role" placeholder="Role (e.g. Frontend Developer)" required />
+            <div style="display: flex; align-items: center; gap: 8px; padding: 10px; background: #121215; border-radius: 8px; border: 1px solid #333;">
+              <input type="checkbox" id="m-founder" style="width: auto; margin: 0;" />
+              <label for="m-founder" style="cursor: pointer; font-size: 0.9rem;">Mark as Co-Founder / Leadership</label>
+            </div>
+          </div>
+          <textarea id="m-desc" placeholder="Bio / Executive summary" rows="2" required></textarea>
+          <div class="admin-grid">
+            <input type="text" id="m-image" placeholder="Image path (e.g. assets/name.png) OR leave blank" />
+            <input type="text" id="m-icon" placeholder="FontAwesome Icon fallback (e.g. fa-solid fa-code)" />
+          </div>
+          <div class="admin-grid">
+            <input type="url" id="m-github" placeholder="GitHub Profile URL" required />
+            <input type="url" id="m-linkedin" placeholder="LinkedIn Profile URL" required />
+          </div>
+          <div class="admin-grid">
+            <input type="email" id="m-email" placeholder="Email Address (Optional)" />
+            <input type="text" id="m-phone" placeholder="Phone Number (Optional)" />
+          </div>
+          <input type="text" id="m-education" placeholder="Education (e.g. BSc (Hons) in IT - KDU)" />
+          <input type="text" id="m-skills" placeholder="Skills (comma-separated, e.g. React, Java, Docker)" />
+          <input type="text" id="m-highlights" placeholder="Highlights (comma-separated achievements)" />
+          <input type="text" id="m-cv" placeholder="CV PDF filename (e.g. John.pdf)" />
+          <button type="submit" class="btn btn-primary" style="align-self: flex-start;"><i class="fas fa-plus"></i> Add Team Member</button>
+        </form>
+      </div>
+
+      <!-- MANAGE TEAM MEMBERS -->
+      <div class="admin-card">
+        <h3><i class="fas fa-users-gear" style="color: #DD591E;"></i> Manage Team Members</h3>
         <div id="team-list" style="margin-top: 16px;"></div>
       </div>
+
     </div>
   </div>
 

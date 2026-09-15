@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KSY Tech | Web & Mobile Solutions</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Dynamic Interactive Ambient Glow Cursor & 3D Grid Canvas -->
+  <div class="cursor-glow" id="cursor-glow"></div>
+  <div class="cyber-grid-floor"></div>
+
+  <!-- Navigation -->
+  <header class="header">
+    <div class="container navbar">
+      <a href="#" class="logo">
+        <span class="logo-mark"><i class="fas fa-layer-group"></i></span>
+        KSY <span>Tech</span>
+      </a>
+      <nav class="nav-links" id="nav-links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#team">Team</a>
+        <a href="#contact" class="btn btn-outline">Let's Talk</a>
+      </nav>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section: Futuristic Illuminated Stage -->
+  <section class="hero-stage" id="about">
+    <div class="top-aurora"></div>
+
+    <div class="container stage-container">
+      <div class="showcase-frame">
+        <!-- 3D Ribbon Arches & Dust Particle Canvas -->
+        <canvas id="ribbon-canvas"></canvas>
+
+        <div class="hero-content">
+          <div class="badge-container">
+            <span class="badge"><i class="fas fa-microchip"></i> Next-Gen Software Studio</span>
+          </div>
+          <h1 class="brand-title">KSY <span class="accent-glow">Tech</span></h1>
+          <p class="tagline">Engineering high-impact web and mobile ecosystems with industrial precision.</p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary"><i class="fas fa-rocket"></i> Our Works</a>
+            <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services / Core Capabilities -->
+  <section class="services section" id="services">
+    <div class="container">
+      <h2 class="section-title">Core Capabilities</h2>
+      <p class="section-subtitle">Engineered by undergraduate software developers pushing modern limits.</p>
+      
+      <div class="services-grid">
+        <div class="card service-card">
+          <div class="icon"><i class="fas fa-code"></i></div>
+          <h3>Web Engineering</h3>
+          <p>Full-cycle single-page applications, responsive interfaces, and performant architectures with TypeScript & modern frameworks.</p>
+        </div>
+
+        <div class="card service-card">
+          <div class="icon"><i class="fas fa-mobile-screen-button"></i></div>
+          <h3>Mobile Development</h3>
+          <p>Native Android & cross-platform solutions focused on fluid 60fps animations, intuitive UX, and clean architecture.</p>
+        </div>
+
+        <div class="card service-card">
+          <div class="icon"><i class="fas fa-network-wired"></i></div>
+          <h3>Backend & Cloud APIs</h3>
+          <p>Layered microservices, REST APIs, and scalable databases built for robust reliability and low latency.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="projects section" id="projects">
+    <div class="container">
+      <h2 class="section-title">Selected Projects</h2>
+      <p class="section-subtitle">Real products and experiments architected by KSY Tech.</p>
+
+      <div class="filters" id="project-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="web">Web</button>
+        <button class="filter-btn" data-filter="mobile">Mobile</button>
+      </div>
+
+      <div class="projects-grid" id="projects-container"></div>
+    </div>
+  </section>
+
+  <!-- Team Section with 15 Members (Collapsible) -->
+  <section class="team section" id="team">
+    <div class="container">
+      <h2 class="section-title">The KSY Team</h2>
+      <p class="section-subtitle">15 undergraduate developers and engineers driving modern software innovation.</p>
+
+      <!-- Co-Founders Row -->
+      <h3 class="team-subheading"><i class="fas fa-bolt"></i> Leadership & Co-Founders</h3>
+      <div class="founders-grid" id="founders-container"></div>
+
+      <!-- Core Members Header & Collapsible Grid -->
+      <div class="collapsible-header" id="team-header-toggle" role="button" tabindex="0">
+        <h3 class="team-subheading" style="margin-bottom: 0;">
+          <i class="fas fa-users"></i> Core Engineering & Design
+        </h3>
+        <span class="header-indicator">
+          <i class="fas fa-chevron-down" id="header-chevron"></i>
+        </span>
+      </div>
+
+      <!-- Wrapper for accordion collapse effect -->
+      <div class="team-collapse-wrapper collapsed" id="team-collapse-wrapper">
+        <div class="team-grid" id="members-container"></div>
+        <div class="collapse-fade-overlay" id="collapse-fade"></div>
+      </div>
+
+      <!-- "See More / See Less" Action Button -->
+      <div class="see-more-container">
+        <button class="btn btn-secondary see-more-btn" id="see-more-btn">
+          <span id="see-more-text">See More Team Members</span>
+          <i class="fas fa-chevron-down toggle-arrow" id="toggle-arrow"></i>
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact section" id="contact">
+    <div class="container contact-container">
+      <div class="contact-info">
+        <h2>Initiate A Collaboration</h2>
+        <p>Whether you need a full application, a prototype MVP, or want to discuss technical research, our doors are open.</p>
+        <div class="contact-details">
+          <div class="item"><i class="fas fa-envelope"></i> contact@ksytech.dev</div>
+          <div class="item"><i class="fas fa-location-dot"></i> Colombo, Sri Lanka • Remote Worldwide</div>
+        </div>
+      </div>
+
+      <form class="contact-form" id="contact-form">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" required placeholder="KSY Tech" />
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" required placeholder="ksytechlk@gmail.com" />
+        </div>
+        <div class="form-group">
+          <label for="message">Project Overview</label>
+          <textarea id="message" rows="4" required placeholder="Tell us about what you want to build..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Dispatch Transmission</button>
+        <p class="form-feedback" id="form-feedback"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>&copy; 2026 KSY Tech. All rights reserved.</p>
+      <div class="social-links">
+        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Member Dossier & CV Modal Dialog -->
+  <div class="modal-backdrop" id="member-modal" aria-hidden="true">
+    <div class="modal-dialog">
+      <button class="modal-close" id="modal-close" aria-label="Close dossier">
+        <i class="fas fa-times"></i>
+      </button>
+      
+      <div class="modal-body" id="modal-content">
+        <!-- Injected via TypeScript -->
+      </div>
+    </div>
+  </div>
+
+  <script src="dist/app.js"></script>
+</body>
+</html>

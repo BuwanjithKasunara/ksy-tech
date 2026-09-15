@@ -109,7 +109,7 @@ const teamMembers: TeamMember[] = [
     ]
   },
 
-  // 13 Core Team Members
+  // Core Team Members
   {
     id: "linali",
     name: "Linali Wickrama",
@@ -189,132 +189,81 @@ const teamMembers: TeamMember[] = [
     ],
     cvPdfUrl: "Dehemi.pdf"
   },
-{
-  id: "chamath",
-  name: "Chamath Rasanjana",
-  role: "Next.js Full-Stack Developer & Media Lead",
-  description: "Builds modern Next.js/Node.js web systems and generative AI integrations while directing visual media and video production.",
-  avatarIcon: "fa-solid fa-code-branch",
-  github: "https://github.com/Chamathmee",
-  linkedin: "https://l1nk.dev/6w1q607",
-  email: "chamathrasanjana2003@gmail.com",
-  education: "BSc (Hons) in Information Technology - KDU (3rd Year) | CCNA Coursework",
-  keySkills: ["Next.js", "React / React Native", "Node.js", "Python", "Flask", "Gemini API", "MongoDB", "Videography"],
-  experienceHighlights: [
-    "Developed Gemini API-integrated air quality and asthma advisory platform",
-    "QA Team Member for KDU University Hospital Management System",
-    "Built sports ground facility booking system and Next.js hardware management tools"
-  ],
-  cvPdfUrl: "Chamath.pdf"
-},
- {
-  id: "pethmi",
-  name: "Pethmi Serasinghe",
-  role: "Full-Stack Web Developer & QA Specialist",
-  description: "Specializes in MERN stack web applications, AI scheduling algorithms, and enterprise quality assurance testing.",
-  avatarIcon: "fa-solid fa-layer-group",
-  github: "https://github.com/Pethmi001",
-  linkedin: "https://h1.nu/1y99P",
-  email: "pethmiserasinghe@gmail.com",
-  education: "BSc (Hons) in Information Technology - KDU (3rd Year) | AI/ML Certification (SLIIT)",
-  keySkills: ["MERN Stack", "React.js", "Node.js", "MongoDB", "Express.js", "Python", "Software QA", "Figma"],
-  experienceHighlights: [
-    "QA Team Member for KDU University Hospital Management System",
-    "Developed MERN POS & Inventory System with rental/restoration tracking",
-    "Engineered AI-based university examination timetable scheduling system"
-  ],
-  cvPdfUrl: "Pethmi.pdf"
-},
- {
-  id: "adithya",
-  name: "A.K. Jayasundara",
-  role: "Cloud & AI Solutions Engineer",
-  description: "Architects serverless cloud platforms, real-time Firebase applications, and AI-driven workflows with React and Node.js.",
-  image: "assets/adithyaksy.png", // Add his portrait here or use avatarIcon: "fa-solid fa-cloud"
-  avatarZoom: "transform: scale(1.2); object-position: 50% 15%;",
-  github: "https://github.com",
-  linkedin: "https://www.linkedin.com/in/adithya-jayasundara-397871394",
-  email: "adithyakesara12345@gmail.com",
-  phone: "0702203306",
-  education: "BSc (Hons) in Information Technology - KDU (Expected 2027)",
-  keySkills: ["React.js", "Firebase", "Node.js", "Prompt Engineering", "Python", "FastAPI", "C# / .NET", "gRPC"],
-  experienceHighlights: [
-    "Engineered GuardEye smart security booking platform with live GPS tracking",
-    "Developed SkyPulse AI weather platform using Gemini API natural language generation",
-    "Experienced in serverless Firestore architectures and real-time push alerts"
-  ],
-  cvPdfUrl: "Adithya.pdf"
-},
-{
-  id: "sarangi",
-  name: "Kavindya Rajapaksha",
-  role: "Associate Product Manager & UI/UX Designer",
-  description: "Directs project coordination, sprint documentation, and intuitive wireframes while ensuring quality control across client portals.",
-  avatarIcon: "fa-solid fa-diagram-project",
-  github: "https://github.com",
-  linkedin: "https://www.linkedin.com/in/kavindya-rajapakshaksr03/",
-  email: "kavindyarajapaksha2003@gmail.com",
-  phone: "+94 71 538 5858",
-  education: "BSc (Hons) in Information Technology - KDU (3rd Year Undergraduate)",
-  keySkills: ["UI/UX Design", "Wireframing", "Project Management", "Business Analysis", "Software Testing", "Documentation"],
-  experienceHighlights: [
-    "Project Manager & UI/UX Designer for Travora tour booking system",
-    "Secretary of the IEEE Student Branch of KDU (2+ years leadership)",
-    "Software QA tester for Online Banking System and Hospital Information Management System (HIMS)"
-  ],
-  cvPdfUrl: "Sarangi.pdf"
-},
-/*
   {
-    id: "member-11",
-    name: "Member 11",
-    role: "Mobile App Developer",
-    description: "Implements responsive mobile views, offline database caching, and push notification services.",
-    avatarIcon: "fa-solid fa-tablet-screen-button",
-    github: "https://github.com",
-    linkedin: "https://linkedin.com",
-    keySkills: ["Flutter", "Dart", "Firebase Cloud Messaging"]
+    id: "chamath",
+    name: "Chamath Rasanjana",
+    role: "Next.js Full-Stack Developer & Media Lead",
+    description: "Builds modern Next.js/Node.js web systems and generative AI integrations while directing visual media and video production.",
+    avatarIcon: "fa-solid fa-code-branch",
+    github: "https://github.com/Chamathmee",
+    linkedin: "https://l1nk.dev/6w1q607",
+    email: "chamathrasanjana2003@gmail.com",
+    education: "BSc (Hons) in Information Technology - KDU (3rd Year) | CCNA Coursework",
+    keySkills: ["Next.js", "React / React Native", "Node.js", "Python", "Flask", "Gemini API", "MongoDB", "Videography"],
+    experienceHighlights: [
+      "Developed Gemini API-integrated air quality and asthma advisory platform",
+      "QA Team Member for KDU University Hospital Management System",
+      "Built sports ground facility booking system and Next.js hardware management tools"
+    ],
+    cvPdfUrl: "Chamath.pdf"
   },
   {
-    id: "member-12",
-    name: "Member 12",
-    role: "Backend & Systems Lead",
-    description: "Monitors microservices stability, backend caching layers, and high-performance algorithms.",
-    avatarIcon: "fa-solid fa-server",
-    github: "https://github.com",
-    linkedin: "https://linkedin.com",
-    keySkills: ["Node.js", "Go", "Distributed Systems"]
+    id: "pethmi",
+    name: "Pethmi Serasinghe",
+    role: "Full-Stack Web Developer & QA Specialist",
+    description: "Specializes in MERN stack web applications, AI scheduling algorithms, and enterprise quality assurance testing.",
+    avatarIcon: "fa-solid fa-layer-group",
+    github: "https://github.com/Pethmi001",
+    linkedin: "https://h1.nu/1y99P",
+    email: "pethmiserasinghe@gmail.com",
+    education: "BSc (Hons) in Information Technology - KDU (3rd Year) | AI/ML Certification (SLIIT)",
+    keySkills: ["MERN Stack", "React.js", "Node.js", "MongoDB", "Express.js", "Python", "Software QA", "Figma"],
+    experienceHighlights: [
+      "QA Team Member for KDU University Hospital Management System",
+      "Developed MERN POS & Inventory System with rental/restoration tracking",
+      "Engineered AI-based university examination timetable scheduling system"
+    ],
+    cvPdfUrl: "Pethmi.pdf"
   },
   {
-    id: "member-13",
-    name: "Member 13",
-    role: "Frontend Developer",
-    description: "Passionate about modern CSS animations, accessibility standards, and responsive web layouts.",
-    avatarIcon: "fa-brands fa-html5",
+    id: "adithya",
+    name: "A.K. Jayasundara",
+    role: "Cloud & AI Solutions Engineer",
+    description: "Architects serverless cloud platforms, real-time Firebase applications, and AI-driven workflows with React and Node.js.",
+    image: "assets/adithyaksy.png",
+    avatarZoom: "transform: scale(1.2); object-position: 50% 15%;",
     github: "https://github.com",
-    linkedin: "https://linkedin.com",
-    keySkills: ["HTML5", "CSS3", "JavaScript", "WCAG Accessibility"]
+    linkedin: "https://www.linkedin.com/in/adithya-jayasundara-397871394",
+    email: "adithyakesara12345@gmail.com",
+    phone: "0702203306",
+    education: "BSc (Hons) in Information Technology - KDU (Expected 2027)",
+    keySkills: ["React.js", "Firebase", "Node.js", "Prompt Engineering", "Python", "FastAPI", "C# / .NET", "gRPC"],
+    experienceHighlights: [
+      "Engineered GuardEye smart security booking platform with live GPS tracking",
+      "Developed SkyPulse AI weather platform using Gemini API natural language generation",
+      "Experienced in serverless Firestore architectures and real-time push alerts"
+    ],
+    cvPdfUrl: "Adithya.pdf"
   },
   {
-    id: "member-14",
-    name: "Member 14",
-    role: "Cross-Platform Mobile Dev",
-    description: "Develops cross-platform iOS and Android applications using Flutter and SQLite.",
-    avatarIcon: "fa-solid fa-cubes",
+    id: "sarangi",
+    name: "Kavindya Rajapaksha",
+    role: "Associate Product Manager & UI/UX Designer",
+    description: "Directs project coordination, sprint documentation, and intuitive wireframes while ensuring quality control across client portals.",
+    avatarIcon: "fa-solid fa-diagram-project",
     github: "https://github.com",
-    linkedin: "https://linkedin.com",
-    keySkills: ["Flutter", "Dart", "SQLite"]
-  },
-  {
-    id: "member-15",
-    name: "Member 15",
-    role: "Security & Systems Lead",
-    description: "Monitors application vulnerabilities, secure authentication, and networking best practices.",
-    avatarIcon: "fa-solid fa-shield-halved",
-    github: "https://github.com",
-    linkedin: "https://linkedin.com",
-    keySkills: ["AppSec", "OAuth2", "Network Penetration Testing"]
-  } */
+    linkedin: "https://www.linkedin.com/in/kavindya-rajapakshaksr03/",
+    email: "kavindyarajapaksha2003@gmail.com",
+    phone: "+94 71 538 5858",
+    education: "BSc (Hons) in Information Technology - KDU (3rd Year Undergraduate)",
+    keySkills: ["UI/UX Design", "Wireframing", "Project Management", "Business Analysis", "Software Testing", "Documentation"],
+    experienceHighlights: [
+      "Project Manager & UI/UX Designer for Travora tour booking system",
+      "Secretary of the IEEE Student Branch of KDU (2+ years leadership)",
+      "Software QA tester for Online Banking System and Hospital Information Management System (HIMS)"
+    ],
+    cvPdfUrl: "Sarangi.pdf"
+  }
 ];
 
 // 3D Sculpted Volumetric Tunnel Arches Canvas
@@ -601,7 +550,6 @@ function renderTeam(): void {
   const founders = teamMembers.filter(m => m.isFounder);
   const regularMembers = teamMembers.filter(m => !m.isFounder);
 
-  // Universal avatar renderer for image vs. icon fallback
   const renderAvatar = (m: TeamMember, extraClass: string = '') => {
     if (m.image) {
       return `
@@ -737,21 +685,42 @@ document.addEventListener('DOMContentLoaded', () => {
   seeMoreBtn?.addEventListener('click', toggleTeamCollapse);
   headerToggle?.addEventListener('click', toggleTeamCollapse);
 
-  // Contact Form Submission Handler
+  // Live Contact Form Submission Handler (Web3Forms API)
   const contactForm = document.getElementById('contact-form') as HTMLFormElement | null;
-  const formFeedback = document.getElementById('form-feedback');
+  const formFeedback = document.getElementById('form-feedback') as HTMLElement | null;
 
   if (contactForm && formFeedback) {
-    contactForm.addEventListener('submit', (e: Event) => {
+    contactForm.addEventListener('submit', async (e: Event) => {
       e.preventDefault();
-      
-      formFeedback.style.color = '#DD591E';
-      formFeedback.textContent = "Transmission received. KSY Tech will respond shortly.";
-      contactForm.reset();
+      formFeedback.textContent = 'Dispatching transmission...';
+      formFeedback.style.color = '#38bdf8';
+
+      const formData = new FormData(contactForm);
+
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: formData
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          formFeedback.textContent = 'Transmission dispatched successfully! KSY Tech will respond shortly.';
+          formFeedback.style.color = '#4ade80';
+          contactForm.reset();
+        } else {
+          formFeedback.textContent = result.message || 'Transmission failed. Please check details and try again.';
+          formFeedback.style.color = '#f87171';
+        }
+      } catch {
+        formFeedback.textContent = 'Network communication error. Please try again later.';
+        formFeedback.style.color = '#f87171';
+      }
 
       setTimeout(() => {
         formFeedback.textContent = '';
-      }, 5000);
+      }, 7000);
     });
   }
 });

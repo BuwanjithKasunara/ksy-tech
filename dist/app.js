@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 // Sample Undergraduate Projects
 const projects = [
     {
@@ -77,7 +86,7 @@ const teamMembers = [
             "Leads cross-platform mobile sprint planning and release roadmaps"
         ]
     },
-    // 13 Core Team Members
+    // Core Team Members
     {
         id: "linali",
         name: "Linali Wickrama",
@@ -198,7 +207,7 @@ const teamMembers = [
         name: "A.K. Jayasundara",
         role: "Cloud & AI Solutions Engineer",
         description: "Architects serverless cloud platforms, real-time Firebase applications, and AI-driven workflows with React and Node.js.",
-        image: "assets/adithyaksy.png", // Add his portrait here or use avatarIcon: "fa-solid fa-cloud"
+        image: "assets/adithyaksy.png",
         avatarZoom: "transform: scale(1.2); object-position: 50% 15%;",
         github: "https://github.com",
         linkedin: "https://www.linkedin.com/in/adithya-jayasundara-397871394",
@@ -231,58 +240,7 @@ const teamMembers = [
             "Software QA tester for Online Banking System and Hospital Information Management System (HIMS)"
         ],
         cvPdfUrl: "Sarangi.pdf"
-    },
-    /*
-      {
-        id: "member-11",
-        name: "Member 11",
-        role: "Mobile App Developer",
-        description: "Implements responsive mobile views, offline database caching, and push notification services.",
-        avatarIcon: "fa-solid fa-tablet-screen-button",
-        github: "https://github.com",
-        linkedin: "https://linkedin.com",
-        keySkills: ["Flutter", "Dart", "Firebase Cloud Messaging"]
-      },
-      {
-        id: "member-12",
-        name: "Member 12",
-        role: "Backend & Systems Lead",
-        description: "Monitors microservices stability, backend caching layers, and high-performance algorithms.",
-        avatarIcon: "fa-solid fa-server",
-        github: "https://github.com",
-        linkedin: "https://linkedin.com",
-        keySkills: ["Node.js", "Go", "Distributed Systems"]
-      },
-      {
-        id: "member-13",
-        name: "Member 13",
-        role: "Frontend Developer",
-        description: "Passionate about modern CSS animations, accessibility standards, and responsive web layouts.",
-        avatarIcon: "fa-brands fa-html5",
-        github: "https://github.com",
-        linkedin: "https://linkedin.com",
-        keySkills: ["HTML5", "CSS3", "JavaScript", "WCAG Accessibility"]
-      },
-      {
-        id: "member-14",
-        name: "Member 14",
-        role: "Cross-Platform Mobile Dev",
-        description: "Develops cross-platform iOS and Android applications using Flutter and SQLite.",
-        avatarIcon: "fa-solid fa-cubes",
-        github: "https://github.com",
-        linkedin: "https://linkedin.com",
-        keySkills: ["Flutter", "Dart", "SQLite"]
-      },
-      {
-        id: "member-15",
-        name: "Member 15",
-        role: "Security & Systems Lead",
-        description: "Monitors application vulnerabilities, secure authentication, and networking best practices.",
-        avatarIcon: "fa-solid fa-shield-halved",
-        github: "https://github.com",
-        linkedin: "https://linkedin.com",
-        keySkills: ["AppSec", "OAuth2", "Network Penetration Testing"]
-      } */
+    }
 ];
 class RibbonCanvas {
     constructor(canvasId) {
@@ -518,7 +476,6 @@ function renderTeam() {
     const membersContainer = document.getElementById('members-container');
     const founders = teamMembers.filter(m => m.isFounder);
     const regularMembers = teamMembers.filter(m => !m.isFounder);
-    // Universal avatar renderer for image vs. icon fallback
     const renderAvatar = (m, extraClass = '') => {
         if (m.image) {
             return `
@@ -644,18 +601,38 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     seeMoreBtn === null || seeMoreBtn === void 0 ? void 0 : seeMoreBtn.addEventListener('click', toggleTeamCollapse);
     headerToggle === null || headerToggle === void 0 ? void 0 : headerToggle.addEventListener('click', toggleTeamCollapse);
-    // Contact Form Submission Handler
+    // Live Contact Form Submission Handler (Web3Forms API)
     const contactForm = document.getElementById('contact-form');
     const formFeedback = document.getElementById('form-feedback');
     if (contactForm && formFeedback) {
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', (e) => __awaiter(void 0, void 0, void 0, function* () {
             e.preventDefault();
-            formFeedback.style.color = '#DD591E';
-            formFeedback.textContent = "Transmission received. KSY Tech will respond shortly.";
-            contactForm.reset();
+            formFeedback.textContent = 'Dispatching transmission...';
+            formFeedback.style.color = '#38bdf8';
+            const formData = new FormData(contactForm);
+            try {
+                const response = yield fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = yield response.json();
+                if (response.ok && result.success) {
+                    formFeedback.textContent = 'Transmission dispatched successfully! KSY Tech will respond shortly.';
+                    formFeedback.style.color = '#4ade80';
+                    contactForm.reset();
+                }
+                else {
+                    formFeedback.textContent = result.message || 'Transmission failed. Please check details and try again.';
+                    formFeedback.style.color = '#f87171';
+                }
+            }
+            catch (_a) {
+                formFeedback.textContent = 'Network communication error. Please try again later.';
+                formFeedback.style.color = '#f87171';
+            }
             setTimeout(() => {
                 formFeedback.textContent = '';
-            }, 5000);
-        });
+            }, 7000);
+        }));
     }
 });

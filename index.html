@@ -153,18 +153,23 @@
         </div>
       </div>
 
-      <form class="contact-form" id="contact-form">
+      <!-- Active Web3Forms Integration -->
+      <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="5ca9d1d4-22dd-4cfe-9fbe-f9dc2cbba56e" />
+        <input type="hidden" name="subject" value="New Transmission from KSY Tech Website" />
+        <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
+
         <div class="form-group">
           <label for="name">Your Name</label>
-          <input type="text" id="name" required placeholder="KSY Tech" />
+          <input type="text" id="name" name="name" required placeholder="KSY Tech" />
         </div>
         <div class="form-group">
           <label for="email">Email Address</label>
-          <input type="email" id="email" required placeholder="ksytechlk@gmail.com" />
+          <input type="email" id="email" name="email" required placeholder="ksytechlk@gmail.com" />
         </div>
         <div class="form-group">
           <label for="message">Project Overview</label>
-          <textarea id="message" rows="4" required placeholder="Tell us about what you want to build..."></textarea>
+          <textarea id="message" name="message" rows="4" required placeholder="Tell us about what you want to build..."></textarea>
         </div>
         <button type="submit" class="btn btn-primary btn-block">Dispatch Transmission</button>
         <p class="form-feedback" id="form-feedback"></p>
